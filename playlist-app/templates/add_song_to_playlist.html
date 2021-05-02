@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add a song to {{ playlist.name }}</h1>
+
+
+<select name="myselect" class="i-can-add-my-own-attrs-now" id="id_myselect">
+    {% for id, name in form.myselect.field.choices %}
+    <option value="{{ id }}">{{ name }}</option>
+    {% endfor %}
+</select>
+{% endblock %}
