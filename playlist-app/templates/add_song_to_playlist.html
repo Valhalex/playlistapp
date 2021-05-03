@@ -6,8 +6,8 @@
 
 
 <select name="myselect" class="i-can-add-my-own-attrs-now" id="id_myselect">
-    {% for id, name in form.myselect.field.choices %}
-    <option value="{{ id }}">{{ name }}</option>
+    {% for field in form %}
+    <option value="">{{ field.title }}</option>
     {% endfor %}
 </select>
 {% endblock %}

@@ -17,7 +17,9 @@ class Playlist(db.Model):
                      nullable=False)
     description = db.Column(db.Text,
                      nullable=True)
-    songs = db.Column(db.Integer, db.ForeignKey("song.id"))
+    songs = db.Column(db.Integer, 
+                     db.ForeignKey("songs.id"),
+                     nullable=True)
     
 
 
