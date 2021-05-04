@@ -48,6 +48,7 @@ def show_playlist(playlist_id):
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
     playlist = Playlist.query.get_or_404(playlist_id)
     
+    
     return render_template("playlist.html", playlist=playlist)
 
 @app.route("/playlists/add", methods=["GET", "POST"])
@@ -130,13 +131,14 @@ def add_song_to_playlist(playlist_id):
 
     playlist = Playlist.query.get_or_404(playlist_id)
     form = NewSongForPlaylistForm()
+    curr_on_playlist = []
 
     # Restrict form to songs not already on this playlist
-
-    # curr_on_playlist = [s.id for s in playlist.songs]
-    # form.song.choices = (db.session.query(Song.id, Song.title)
-    #                     .filter(Song.id.notin_(curr_on_playlist))
-    #                     .all())
+    if playlist.songs is not None:
+        curr_on_playlist = [s.id for s in playlist.songs]
+    form.song.choices = (db.session.query(Song.id, Song.title)
+                         .filter(Song.id.notin_(curr_on_playlist))
+                         .all())
 
     if form.validate_on_submit():
 
