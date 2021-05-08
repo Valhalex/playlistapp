@@ -20,6 +20,10 @@ class Playlist(db.Model):
     songs = db.Column(db.Integer, 
                      db.ForeignKey("songs.id"),
                      nullable=True)
+    ###################################
+    trackIds =  db.relationship('Song',
+                                secondary='playlists_songs',
+                                backref="playlist")
     
 
 
@@ -34,7 +38,10 @@ class Song(db.Model):
                       nullable=False,)
     artist = db.Column(db.Text,
                        nullable=False)
-    # ADD THE NECESSARY CODE HERE
+    trackIds =  db.relationship('Playlist',
+                                secondary='playlists_songs',
+                                backref="song")
+    
 
 
 class PlaylistSong(db.Model):
@@ -46,9 +53,13 @@ class PlaylistSong(db.Model):
                   primary_key=True,
                   autoincrement=True)
     playlist_id = db.Column(db.Integer,
-                            db.ForeignKey("playlists.id"))
+                            db.ForeignKey("playlists.id"),
+                            primary_key=True)
     song_id = db.Column(db.Integer,
-                            db.ForeignKey("songs.id"))
+                            db.ForeignKey("songs.id"),
+                            primary_key=True)
+    
+    
 
 
 

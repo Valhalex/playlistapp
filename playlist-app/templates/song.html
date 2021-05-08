@@ -5,10 +5,25 @@
 <div class="jumbotron">
   <h1>{{ song.title }}!</h1>
   <p class="lead">&ndash; {{ song.artist }}</p>
+
+
+<h2>Check out the playlist this song appears in..</h2>
+
+  <div>
+    {% for playlist in playlistData %}
+      <div>
+        <ul>
+          <li>{{playlist.name}}</li>
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+   
+
 </div>
 
-<ul>
-  DISPLAY ALL OF THE PLAYLISTS THAT THIS SONG IS A PART OF
-</ul>
+
+
+
 
 {% endblock %}

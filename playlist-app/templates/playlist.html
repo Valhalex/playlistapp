@@ -7,8 +7,15 @@
   {% if playlist.description %}
   <p class="lead">{{ playlist.description }}</p>
   {% endif %}
+  {% for song in songs %}
+  <div>
+    <ul>
+      <li>{{song.title}}</li>
+    </ul>
+    
+  </div>
+  {% endfor %}
 </div>
-
 
 <p>
   <a class="btn btn-primary" href="/playlists/{{ playlist.id }}/add-song">
